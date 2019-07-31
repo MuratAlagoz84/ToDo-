@@ -50,7 +50,23 @@ class ToDoListViewController: UITableViewController {
     }
     
     
+    //MARK - Add New Items
     
+    @IBAction func addButtonPresses(_ sender: UIBarButtonItem) {
+        
+        
+        let alert = UIAlertController(title: "Add New To Do Button", message: "", preferredStyle: .alert)
+        
+        let action = UIAlertAction(title: "Add Item", style: .default) { (action) in
+            // what Will hapen once the user Clicks the add item button on our UIAlert
+            print("Sucess")
+        }
+        
+        alert.addAction(action)
+        
+        present(alert,animated: true,completion: nil)
+        
+    }
     
 }
 
