@@ -21,6 +21,7 @@ class ToDoListViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         
         loadItems()
 
@@ -114,9 +115,8 @@ class ToDoListViewController: UITableViewController {
         self.tableView.reloadData()
         
     }
-    func loadItems(){
+    func loadItems(whit request: NSFetchRequest<Item> = Item.fetchRequest()){
      
-        let request : NSFetchRequest<Item> = Item.fetchRequest()
        
         do{
        itemArray = try context.fetch(request)
@@ -124,6 +124,38 @@ class ToDoListViewController: UITableViewController {
         catch{
             print("Error loading Items From context \(error)")
         }
+        tableView.reloadData()
     }
+    
+    
+    
 }
 
+// MARK: - Search Bar Methods
+
+extension ToDoListViewController : UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let request : NSFetchRequest<Item> = Item.fetchRequest()
+        
+        request.predicate = NSPredicate (format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+        
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        
+        loadItems(whit: request)
+
+
+    }
+    
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loadItems()
+            DispatchQueue.main.async {
+            searchBar.resignFirstResponder()
+            }
+           
+        }
+    }
+}
