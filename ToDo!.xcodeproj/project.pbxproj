@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9A35474F22F46F3D0090B5A0 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9A35474D22F46F3D0090B5A0 /* DataModel.xcdatamodeld */; };
+		9AAC7C1522F6FCB20001F4FB /* CategoryViewControler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAC7C1422F6FCB20001F4FB /* CategoryViewControler.swift */; };
 		9AE5A45B22F19E2D009FCF15 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5A45A22F19E2D009FCF15 /* AppDelegate.swift */; };
 		9AE5A45D22F19E2D009FCF15 /* ToDoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5A45C22F19E2D009FCF15 /* ToDoListViewController.swift */; };
 		9AE5A46022F19E2D009FCF15 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9AE5A45E22F19E2D009FCF15 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		9A35474E22F46F3D0090B5A0 /* DataMode.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataMode.xcdatamodel; sourceTree = "<group>"; };
+		9AAC7C1422F6FCB20001F4FB /* CategoryViewControler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryViewControler.swift; path = "ToDo!/Controllers/CategoryViewControler.swift"; sourceTree = SOURCE_ROOT; };
 		9AE5A45722F19E2D009FCF15 /* ToDo!.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ToDo!.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE5A45A22F19E2D009FCF15 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9AE5A45C22F19E2D009FCF15 /* ToDoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 		9AD41B9522F2FE62002C6A6E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				9AAC7C1422F6FCB20001F4FB /* CategoryViewControler.swift */,
 				9AE5A45C22F19E2D009FCF15 /* ToDoListViewController.swift */,
 			);
 			path = Controllers;
@@ -173,6 +176,7 @@
 				9A35474F22F46F3D0090B5A0 /* DataModel.xcdatamodeld in Sources */,
 				9AE5A45D22F19E2D009FCF15 /* ToDoListViewController.swift in Sources */,
 				9AE5A45B22F19E2D009FCF15 /* AppDelegate.swift in Sources */,
+				9AAC7C1522F6FCB20001F4FB /* CategoryViewControler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,8 +323,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZHTVJPM43;
 				INFOPLIST_FILE = "ToDo!/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -337,8 +342,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QZHTVJPM43;
 				INFOPLIST_FILE = "ToDo!/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

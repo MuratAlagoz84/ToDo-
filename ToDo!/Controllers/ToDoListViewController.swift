@@ -13,6 +13,12 @@ class ToDoListViewController: UITableViewController {
     
     var itemArray = [Item]()
     
+    var selectedCategory : Category?{
+        didSet{
+            loadItems()
+
+        }
+    }
     
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
@@ -23,11 +29,12 @@ class ToDoListViewController: UITableViewController {
         super.viewDidLoad()
 
         
-        loadItems()
 
         
         
     }
+    
+    //:MARK:- TableView DataCoruce Methods
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
@@ -48,6 +55,7 @@ class ToDoListViewController: UITableViewController {
         return cell
     }
     
+    // MARK: - TableView Delegate Methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
  
@@ -78,6 +86,7 @@ class ToDoListViewController: UITableViewController {
             let newItem = Item(context: self.context)
             newItem.title = textField.text!
             newItem.done = false
+            newItem.parrentCategory = self.selectedCategory
             
             self.itemArray.append(newItem)
             self.saveDataMethod()
@@ -97,6 +106,7 @@ class ToDoListViewController: UITableViewController {
         
     }
     
+    // MARK: - Model Manipulation Methods
     
     func saveDataMethod() {
         
@@ -115,8 +125,17 @@ class ToDoListViewController: UITableViewController {
         self.tableView.reloadData()
         
     }
-    func loadItems(whit request: NSFetchRequest<Item> = Item.fetchRequest()){
-     
+    func loadItems(whit request: NSFetchRequest<Item> = Item.fetchRequest(),predicade:NSPredicate? = nil){
+        
+        let categoryPredicate = NSPredicate(format: "parrentCategory.name MATCHES %@", selectedCategory!.name!)
+        
+        if let additionalPredicate = predicade{
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate,additionalPredicate])
+        }else{
+            request.predicate = categoryPredicate
+        }
+        
+
        
         do{
        itemArray = try context.fetch(request)
@@ -138,12 +157,12 @@ extension ToDoListViewController : UISearchBarDelegate{
         
         let request : NSFetchRequest<Item> = Item.fetchRequest()
         
-        request.predicate = NSPredicate (format: "title CONTAINS[cd] %@", searchBar.text!)
+        let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
         
         
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
-        loadItems(whit: request)
+        loadItems(whit: request, predicade: predicate)
 
 
     }
