@@ -26,12 +26,10 @@ class ToDoListViewController: UITableViewController {
 
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
-        
 
-        
-        
     }
     
     //:MARK:- TableView DataCoruce Methods
