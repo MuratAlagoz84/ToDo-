@@ -7,8 +7,10 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 class CategoryViewControler: UITableViewController {
+    
+    let realm = try! Realm()
     
     var categoryArray = [Category]()
     
@@ -24,8 +26,8 @@ class CategoryViewControler: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadCategory()
-        
+
+    
         
     }
 
@@ -35,16 +37,16 @@ class CategoryViewControler: UITableViewController {
         
         let alert = UIAlertController(title: "Add New Category", message: "", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add Category", style: .default) { (action) in
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
             // what Will hapen once the user Clicks the add item button on our UIAlert
             
             
-            let newCategory = Category(context: self.context)
+            let newCategory = Category()
             newCategory.name = textField.text!
             
             self.categoryArray.append(newCategory)
             
-            self.saveDataMethod()
+            self.save(category: newCategory)
             
             
             
@@ -101,13 +103,15 @@ class CategoryViewControler: UITableViewController {
     
     
     
-    func saveDataMethod() {
+    func save(category:Category) {
         
         
         do {
             
             
-            try context.save()
+            try realm.write {
+                realm.add(category)
+                }
             
         }
         catch{
@@ -118,17 +122,17 @@ class CategoryViewControler: UITableViewController {
         self.tableView.reloadData()
         
     }
-    func loadCategory(whit request: NSFetchRequest<Category> = Category.fetchRequest()){
-        
-        
-        do{
-            categoryArray = try context.fetch(request)
-        }
-        catch{
-            print("Error loading Items From context \(error)")
-        }
-        tableView.reloadData()
-    }
+//    func loadCategory(whit request: NSFetchRequest<Category> = Category.fetchRequest()){
+//        
+//        
+//        do{
+//            categoryArray = try context.fetch(request)
+//        }
+//        catch{
+//            print("Error loading Items From context \(error)")
+//        }
+//        tableView.reloadData()
+//    }
     
     
     
